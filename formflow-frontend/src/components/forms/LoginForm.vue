@@ -70,12 +70,10 @@ export default {
                 password: this.password,
             })
                 .then(response => {
-                    console.log(response);
                     this.store.updateUserToken(response.data.token);
                     this.$router.replace("/");
                 })
                 .catch(error => {
-                    console.log(error);
                     let message = error.response.data.message;
                     this.error = message + " Please try again.";
                     this.endLoading();
