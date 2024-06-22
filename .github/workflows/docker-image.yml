@@ -18,7 +18,7 @@ jobs:
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_ACCESS_TOKEN }}
-          IMAGE_NAME: your-dockerhub-username/formflow-backend
+          IMAGE_NAME: todorovamonika/formflow-backend
         run: |
           docker build -t $IMAGE_NAME ./formflow-backend
           docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
@@ -29,7 +29,7 @@ jobs:
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_ACCESS_TOKEN }}
-          IMAGE_NAME: your-dockerhub-username/formflow-frontend
+          IMAGE_NAME: todorovamonika/formflow-frontend
         run: |
           docker build -t $IMAGE_NAME ./formflow-frontend
           docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
