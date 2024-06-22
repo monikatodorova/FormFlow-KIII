@@ -1,0 +1,36 @@
+name: Docker Build and Push
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Build and push backend Docker image
+      - name: Build and push backend Docker image
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_ACCESS_TOKEN }}
+          IMAGE_NAME: todorovamonika/formflow-backend
+        run: |
+          docker build -t $IMAGE_NAME ./formflow-backend
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+          docker push $IMAGE_NAME
+
+      # Build and push frontend Docker image
+      - name: Build and push frontend Docker image
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_ACCESS_TOKEN }}
+          IMAGE_NAME: todorovamonika/formflow-frontend
+        run: |
+          docker build -t $IMAGE_NAME ./formflow-frontend
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+          docker push $IMAGE_NAME
