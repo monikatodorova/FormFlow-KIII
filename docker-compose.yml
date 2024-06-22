@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+
+  api:
+    container_name: formflow-backend
+    build:
+      context: ./formflow-backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./formflow-backend:/var/www/html
+    ports:
+      - "8080:80"
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html/public
+    depends_on:
+      - db
+    networks:
+      - formflow
+
+  web:
+    container_name: formflow-frontend
+    build:
+      context: ./formflow-frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ./formflow-frontend:/app
+    ports:
+      - "8081:8080"
+    networks:
+      - formflow
+
+  db:
+    image: mysql:latest
+    container_name: formflow-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: formflow
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - formflow
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: formflow-phpmyadmin
+    ports:
+      - 9015:80
+    environment:
+      # - PMA_ARBITRARY=1
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: root
+    depends_on:
+      - db
+    networks:
+      - formflow
+
+networks:
+  formflow:
+    driver: bridge
+
+volumes:
+  mysql-data:

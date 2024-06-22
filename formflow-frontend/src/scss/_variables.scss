@@ -1,0 +1,125 @@
+// Colors
+$dark: #0E122E;
+$white: #fff;
+$primary: #031feb;
+$primary-darker: #222A68;
+$grey-text: #666;
+$grey-background: #aaa;
+$danger: #ff331f;
+
+// Backgrounds
+$background-white: #ffffff;
+$background-grey: #f2f4f9;
+$hover-grey: #f1f3f9;
+$active-grey: #e1e2e9;
+$box-shadow-color: rgba(10, 10, 10, 0.15);
+$border-grey: #eee;
+$border-dark-grey: #d2d2d2;
+$border-darker-grey: #bbb;
+
+// Sizing
+$box-border-radius: 0.75rem;
+
+@import "buttons";
+@import "mixins";
+
+// Effects
+.animated {
+	transition: 0.15s ease all;
+}
+
+.animated-background {
+	transition: 0.15s ease background;
+}
+
+.disable-selection {
+	user-select: none;
+}
+
+.disable-clicks {
+	pointer-events: none;
+}
+
+@-webkit-keyframes LOADING-EFFECT {
+	0% {
+		transform: translateX(0%);
+	}
+	100% {
+		transform: translateX(250%)
+	}
+}
+
+@-moz-keyframes LOADING-EFFECT {
+	0% {
+		transform: translateX(0%);
+	}
+	100% {
+		transform: translateX(250%)
+	}
+}
+
+@-o-keyframes LOADING-EFFECT {
+	0% {
+		transform: translateX(0%);
+	}
+	100% {
+		transform: translateX(250%)
+	}
+}
+
+@keyframes LOADING-EFFECT {
+	0% {
+		transform: translateX(0%);
+	}
+	100% {
+		transform: translateX(250%)
+	}
+}
+
+@-webkit-keyframes LOADING-BACKGROUND-EFFECT {
+	0% {
+		background: $background-grey;
+	}
+	50% {
+		background: $background-white;
+	}
+	100% {
+		background: $background-grey;
+	}
+}
+
+@-moz-keyframes LOADING-BACKGROUND-EFFECT {
+	0% {
+		background: $background-grey;
+	}
+	50% {
+		background: $background-white;
+	}
+	100% {
+		background: $background-grey;
+	}
+}
+
+@-o-keyframes LOADING-BACKGROUND-EFFECT {
+	0% {
+		background: $background-grey;
+	}
+	50% {
+		background: $background-white;
+	}
+	100% {
+		background: $background-grey;
+	}
+}
+
+@keyframes LOADING-BACKGROUND-EFFECT {
+	0% {
+		background: $background-grey;
+	}
+	50% {
+		background: $background-white;
+	}
+	100% {
+		background: $background-grey;
+	}
+}
