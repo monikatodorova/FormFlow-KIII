@@ -20,6 +20,7 @@ metadata:
 type: Opaque
 data:
   mysql-password: cm9vdA==  # base64 encoded value of 'root'
+  mysql-database: Zm9ybWZsb3c=  # base64 encoded value of 'formflow'
 
 ---
 
@@ -89,3 +90,34 @@ spec:
             secretKeyRef:
               name: mysql-secret
               key: mysql-password
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: formflowfront-config
+  namespace: formflow
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: formflowfront
+  namespace: formflow
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: formflowfront
+  template:
+    metadata:
+      labels:
+        app: formflowfront
+    spec:
+      containers:
+        - name: formflowfront
+          image: todorovamonika/formflow-frontend:latest
+          ports:
+            - containerPort: 8080
