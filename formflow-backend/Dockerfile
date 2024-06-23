@@ -10,6 +10,7 @@ RUN apt-get update -y && apt-get install -y \
     unzip \
     git \
     libgmp-dev \
+    default-mysql-client \
     && rm -rf /var/lib/apt/lists/*
 
 RUN a2enmod rewrite

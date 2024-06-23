@@ -38,6 +38,31 @@ spec:
       labels:
         app: formflowapi
     spec:
+      initContainers:
+      - name: init-migrate
+        image: todorovamonika/formflow-backend:latest
+        command: ["/bin/sh", "-c", "php artisan migrate --force"]
+        env:
+        - name: DB_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: formflowapi-config
+              key: DB_DATABASE
+        - name: DB_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: formflowapi-config
+              key: DB_USERNAME
+        - name: DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: formflowapi-config
+              key: DB_HOST
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: mysql-password
       containers:
       - name: formflowapi-container
         image: todorovamonika/formflow-backend:latest
