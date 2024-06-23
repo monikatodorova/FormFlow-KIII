@@ -127,5 +127,5 @@ spec:
           - name: VUE_APP_API_URL
             valueFrom:
               configMapKeyRef:
-                name: fromflowfront-config
+                name: formflowfront-config
                 key: VUE_APP_API_URL
