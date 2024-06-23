@@ -98,6 +98,8 @@ kind: ConfigMap
 metadata:
   name: formflowfront-config
   namespace: formflow
+data:
+  VUE_APP_API_URL: "http://formflowapi-service.formflow.svc.cluster.local/api"
 
 ---
 
@@ -121,3 +123,9 @@ spec:
           image: todorovamonika/formflow-frontend:latest
           ports:
             - containerPort: 8080
+          env:
+          - name: VUE_APP_API_URL
+            valueFrom:
+              configMapKeyRef:
+                name: fromflowfront-config
+                key: VUE_APP_API_URL

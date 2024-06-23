@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const API_URL = "http://formflowapi-service.formflow.svc.cluster.local/api";
+export const API_URL = process.env.VUE_APP_API_URL;
 
 // Default axios request method
 const repository = axios.create({
