@@ -26,12 +26,17 @@ use App\Models\Color;
  * Login & Registration Routes
  * =========================
  */
+Route::get('/test', function () {
+    return response()->json(['message' => 'Hello, this is a test!']);
+});
+
 Route::post('/login', [UsersController::class, 'login'])
     ->name('api.login')
     ->middleware('cors');
 
 Route::post('/register', [UsersController::class, 'register'])
-    ->name('api.register');
+    ->name('api.register')
+    ->middleware('cors');
 
 Route::get("/colors", function () {
     return Color::query()->orderBy('color')->get()->makeVisible(['id']);
