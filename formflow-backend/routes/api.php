@@ -31,12 +31,10 @@ Route::get('/test', function () {
 });
 
 Route::post('/login', [UsersController::class, 'login'])
-    ->name('api.login')
-    ->middleware('cors');
+    ->name('api.login');
 
 Route::post('/register', [UsersController::class, 'register'])
-    ->name('api.register')
-    ->middleware('cors');
+    ->name('api.register');
 
 Route::get("/colors", function () {
     return Color::query()->orderBy('color')->get()->makeVisible(['id']);
