@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-config
+  namespace: formflow
+data:
+  APACHE_DOCUMENT_ROOT: /var/www/html/public
+  DB_HOST: mysql
+  DB_PORT: "3306"
+  DB_DATABASE: formflow
+  DB_USERNAME: root
+  DB_PASSWORD: root
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: formflow
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: todorovamonika/formflow-backend:latest
+        ports:
+        - containerPort: 9090
+        envFrom:
+        - configMapRef:
+            name: backend-config
