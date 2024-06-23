@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const API_URL = "http://127.0.0.1:8080/api";
+export const API_URL = "http://formflowapi-service.formflow.svc.cluster.local/api";
 
 // Default axios request method
 const repository = axios.create({
