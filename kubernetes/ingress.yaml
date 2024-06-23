@@ -17,6 +17,26 @@
 #             port:
 #               number: 80
 
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: formflowapi-ingress
+  namespace: formflow
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+  - host: formflow.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: formflowapi-service
+            port:
+              number: 80
+
 ---
 
 apiVersion: networking.k8s.io/v1

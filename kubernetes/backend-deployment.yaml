@@ -99,7 +99,7 @@ metadata:
   name: formflowfront-config
   namespace: formflow
 data:
-  VUE_APP_API_URL: "http://formflowapi-service.formflow.svc.cluster.local/api"
+  VUE_APP_API_URL: "http://formflow.local:8082/api"
 
 ---
 
