@@ -30,14 +30,12 @@ COPY . .
 
 RUN cp .env.example .env
 
-RUN php artisan key:generate
-
 RUN composer install --no-interaction --optimize-autoloader
+
+RUN php artisan key:generate
 
 RUN chown -R www-data:www-data storage bootstrap/cache \
     && chmod -R 775 storage bootstrap/cache
-
-RUN php artisan passport:install --force
 
 EXPOSE 80
 

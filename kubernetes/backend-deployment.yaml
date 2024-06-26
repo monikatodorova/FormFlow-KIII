@@ -42,7 +42,7 @@ spec:
       initContainers:
       - name: init-migrate
         image: todorovamonika/formflow-backend:latest
-        command: ["/bin/sh", "-c", "php artisan migrate --force && php artisan db:seed --force"]
+        command: ["/bin/sh", "-c", "php artisan migrate --force && php artisan passport:install --force && php artisan db:seed --force"]
         env:
         - name: DB_DATABASE
           valueFrom:
