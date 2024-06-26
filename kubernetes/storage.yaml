@@ -31,10 +31,16 @@ spec:
   selector:
     matchLabels:
       app: mysqlserver
+      apps.kubernetes.io/pod-index: "0"
+      controller-revision-hash: mysqldb-69fcfdb46d
+      statefulset.kubernetes.io/pod-name: mysqldb-0
   template:
     metadata:
       labels:
         app: mysqlserver
+        apps.kubernetes.io/pod-index: "0"
+        controller-revision-hash: mysqldb-69fcfdb46d
+        statefulset.kubernetes.io/pod-name: mysqldb-0
     spec:
       containers:
       - name: mysqlserver
