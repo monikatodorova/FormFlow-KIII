@@ -28,17 +28,16 @@ WORKDIR /var/www/html
 
 COPY . .
 
-RUN composer install --no-interaction --optimize-autoloader
-
-# Ensure the .env file exists
 RUN cp .env.example .env
 
-# Generate the application key
 RUN php artisan key:generate
-RUN php artisan passport:install
+
+RUN composer install --no-interaction --optimize-autoloader
 
 RUN chown -R www-data:www-data storage bootstrap/cache \
     && chmod -R 775 storage bootstrap/cache
+
+RUN php artisan passport:install --force
 
 EXPOSE 80
 
