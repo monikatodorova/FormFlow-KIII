@@ -30,6 +30,12 @@ COPY . .
 
 RUN composer install --no-interaction --optimize-autoloader
 
+# Ensure the .env file exists
+RUN cp .env.example .env
+
+# Generate the application key
+RUN php artisan key:generate
+
 RUN chown -R www-data:www-data storage bootstrap/cache \
     && chmod -R 775 storage bootstrap/cache
 
